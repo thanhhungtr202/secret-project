@@ -77,7 +77,12 @@ app.get("/secrets", async (req, res) => {
 //TODO: Add a get route for the submit button
 //Think about how the logic should work with authentication.
 app.get("/submit", (req, res)=>{
-  res.render("submit.ejs");
+  if(req.isAuthenticated()){
+    res.render("submit.ejs");
+  }
+  else{
+    res.redirect("/login");
+  }
 });
 
 app.get(
